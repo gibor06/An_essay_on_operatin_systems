@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    pid_t pid;
+
+    pid = fork();
+
+    if(pid == 0) {
+        execl("/bin/ls", "ls", "-l", NULL);
+    } 
+    else {
+        printf("Parent process waiting\n");
+        wait(NULL);
+    }
+
+    return 0;
+}
